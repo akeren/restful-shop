@@ -23,7 +23,7 @@ app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 
 /*
- ** Handling errors
+ ** Handling errors 
  */
 app.use((req, res, next) => {
     const error = new Error('oops! - Not Found');
