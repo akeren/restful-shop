@@ -3,7 +3,7 @@
  */
 const http = require('http');
 
-const { app } = require('./app'); //impoted the app.js 
+const { app } = require('./app'); //imported the app.js 
 
 const port = process.env.PORT || 4000;
 
