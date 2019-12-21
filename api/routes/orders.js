@@ -12,7 +12,14 @@ router.get('/', (req, res, next) => {
     res.status(200).json({ message: "Handling All orders from /orders" });
 });
 router.post('/', (req, res, next) => {
-    res.status(201).json({ message: "Handling POST Request" });
+    const order = {
+        productID: req.body.productID,
+        quantity: req.body.quantity
+    };
+    res.status(201).json({
+        message: "Handling POST Request",
+        orderCreated: order
+    });
 });
 router.get('/:orderID', (req, res, next) => {
     res.status(200).json({ message: "Fetch a Single order", orderID: req.params.orderID });

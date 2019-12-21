@@ -12,7 +12,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    res.status(201).json({ message: "Handling POST requests from /products" });
+    const product = {
+        name: req.body.name,
+        price: req.body.price
+    };
+    res.status(201).json({
+        message: "Handling POST requests from /products",
+        createdProduct: product
+    });
 });
 router.get('/:productID', (req, res, next) => {
     const id = req.params.productID;
