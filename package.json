@@ -1,20 +1,24 @@
 {
-  "name": "restful-shop",
-  "version": "1.0.0",
-  "description": "A Node JS Restful Shop API Development",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "node",
-    "restful",
-    "shop",
-    "api"
-  ],
-  "author": "Kater Akeren",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+    "name": "restful-shop",
+    "version": "1.0.0",
+    "description": "A Node JS Restful Shop API Development",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js"
+    },
+    "keywords": [
+        "node",
+        "restful",
+        "shop",
+        "api"
+    ],
+    "author": "Kater Akeren",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    }
 }
