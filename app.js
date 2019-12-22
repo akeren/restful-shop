@@ -5,11 +5,20 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 /*
  ** imported the apis from the api>routes directory 
  */
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+/*
+ ** Mongoose connection
+ */
+mongoose.connect("mongodb+srv://restful-shop:" + process.env.MONGO_ATLAS_PASS + "@restful-shop-ol9at.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 /*
  ** Logging incoming requests
