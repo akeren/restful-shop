@@ -13,11 +13,26 @@ const Product = require('../models/products');
 router.get('/', (req, res, next) => {
     //Getting all the products
     Product.find()
+        .select('name price _id')
         .exec()
         .then((docs) => {
             if (docs.length > 0) {
-                console.log(docs);
-                res.status(200).json(docs)
+                /* console.log(docs); */
+                const queryResult = {
+                    count: docs.length,
+                    products: docs.map((doc) => {
+                        return {
+                            name: doc.name,
+                            price: doc.price,
+                            _id: doc._id,
+                            request: {
+                                type: 'GET',
+                                url: 'http://localhost:4000/products/' + doc._id
+                            }
+                        };
+                    })
+                };
+                res.status(200).json(queryResult);
             } else {
                 res.status(204).json({ message: "No Product Available in the Collection" });
             }
@@ -39,8 +54,16 @@ router.post('/', (req, res, next) => {
         .then((result) => {
             console.log(result)
             res.status(201).json({
-                message: "Handling POST requests from /products",
-                createdProduct: result
+                message: "Product Created Successfully",
+                productCreated: {
+                    name: result.name,
+                    price: result.price,
+                    _id: result._id,
+                    request: {
+                        type: 'GET',
+                        url: 'http://localhost:4000/products/' + result._id
+                    }
+                }
             });
         })
         .catch((err) => {
@@ -52,11 +75,20 @@ router.get('/:productID', (req, res, next) => {
     const id = req.params.productID;
     //Get a single product
     Product.findById(id)
+        .select('name price _id')
         .exec()
         .then((doc) => {
             console.log(`From database`, doc)
             if (doc) {
-                res.status(200).json(doc)
+                res.status(200).json({
+                    product: doc,
+                    request: {
+                        type: 'GET',
+                        description: 'GET_ALL_THE_PRODUCTS',
+                        url: 'http://localhost:4000/products'
+                    }
+                });
+
             } else {
                 res.status(404)
                     .json({
@@ -80,7 +112,13 @@ router.patch('/:productID', (req, res, next) => {
         .exec()
         .then((results) => {
             console.log(results);
-            res.status(200).json(results);
+            res.status(200).json({
+                message: "Product Updated Successfully",
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:4000/products/' + id
+                }
+            });
         })
         .catch((err) => {
             console.log(err);
@@ -95,7 +133,15 @@ router.delete('/:productID', (req, res, next) => {
         .exec()
         .then((result) => {
             console.log(result);
-            res.status(200).json(result);
+            res.status(200).json({
+                message: 'Deleted Successfully',
+                request: {
+                    type: 'POST',
+                    description: 'POST_A_NEW_PRODUCT',
+                    url: 'http://localhost:4000/products',
+                    body: { name: 'String', price: 'Number' }
+                }
+            });
         })
         .catch((err) => {
             console.log(err);
