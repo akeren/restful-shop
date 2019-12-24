@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Product = require('../models/products');
+const Product = require('../models/product');
 
 /*
  ** Product Routes
@@ -34,7 +34,7 @@ router.get('/', (req, res, next) => {
                 };
                 res.status(200).json(queryResult);
             } else {
-                res.status(204).json({ message: "No Product Available in the Collection" });
+                res.status(404).json({ message: "No Product Available in the Collection" });
             }
         })
         .catch((err) => {
@@ -78,23 +78,22 @@ router.get('/:productID', (req, res, next) => {
         .select('name price _id')
         .exec()
         .then((doc) => {
-            console.log(`From database`, doc)
-            if (doc) {
-                res.status(200).json({
-                    product: doc,
-                    request: {
-                        type: 'GET',
-                        description: 'GET_ALL_THE_PRODUCTS',
-                        url: 'http://localhost:4000/products'
-                    }
-                });
 
-            } else {
+            if (!doc) {
                 res.status(404)
                     .json({
                         message: "No valid entry found for the product ID"
                     });
             }
+            console.log(`From database`, doc)
+            res.status(200).json({
+                product: doc,
+                request: {
+                    type: 'GET',
+                    description: 'GET_ALL_THE_PRODUCTS',
+                    url: 'http://localhost:4000/products'
+                }
+            });
         })
         .catch((err) => {
             console.log(err);

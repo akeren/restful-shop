@@ -13,12 +13,20 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 /*
- ** Mongoose connection
+ ** MongDB Atlas connection using 
  */
-mongoose.connect("mongodb+srv://restful-shop:" + process.env.MONGO_ATLAS_PASS + "@restful-shop-ol9at.mongodb.net/test?retryWrites=true&w=majority", {
+/* mongoose.connect("mongodb+srv://restful-shop:" + process.env.MONGO_ATLAS_PASS + "@restful-shop-ol9at.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}); */
+
+// MongoDB Local Connection
+mongoose.connect('mongodb://localhost/shop', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+
+//mongoose.Promise = global.Promise;
 
 /*
  ** Logging incoming requests
