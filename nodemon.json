@@ -1,5 +1,6 @@
 {
     "env": {
-        "MONGO_ATLAS_PASS": ""
+        "MONGO_ATLAS_PASS": "",
+        "JWT_KEY": "secret"
     }
 }
