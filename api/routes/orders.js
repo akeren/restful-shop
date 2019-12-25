@@ -8,11 +8,13 @@ const mongoose = require('mongoose');
 const Order = require('../models/order');
 const Product = require('../models/product');
 
+const authCheck = require('../middleware/authCheck');
+
 /*
  ** Order Routes 
  */
 
-router.get('/', (req, res, next) => {
+router.get('/', authCheck, (req, res, next) => {
     Order.find().select('product quantity _id').populate('product', 'name')
         .exec()
         .then((documets) => {
@@ -42,7 +44,7 @@ router.get('/', (req, res, next) => {
             });
         });
 });
-router.post('/', (req, res, next) => {
+router.post('/', authCheck, (req, res, next) => {
     Product.findById(req.body.productId)
         .then((product) => {
             if (!product) {
@@ -76,7 +78,7 @@ router.post('/', (req, res, next) => {
             res.status(500).json({ error: err });
         });
 });
-router.get('/:orderID', (req, res, next) => {
+router.get('/:orderID', authCheck, (req, res, next) => {
     const orderId = req.params.orderID;
     Order.findById(orderId).select('_id quantity product').populate('product', '_id name price')
         .exec()
@@ -101,7 +103,7 @@ router.get('/:orderID', (req, res, next) => {
             });
         });
 });
-router.delete('/:orderID', (req, res, next) => {
+router.delete('/:orderID', authCheck, (req, res, next) => {
     const orderId = req.params.orderID;
     Order.remove({ _id: orderId }).exec()
         .then((result) => {

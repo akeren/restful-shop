@@ -5,6 +5,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+
+const authCheck = require('../middleware/authCheck');
 /*
  ** multer local storage strategy
  */
@@ -71,7 +73,7 @@ router.get('/', (req, res, next) => {
         });
 });
 
-router.post('/', upload.single('productImage'), (req, res, next) => {
+router.post('/', authCheck, upload.single('productImage'), (req, res, next) => {
     console.log(req.file);
     //create a new product
     const newProduct = new Product({
@@ -132,7 +134,7 @@ router.get('/:productID', (req, res, next) => {
         });
 });
 
-router.patch('/:productID', (req, res, next) => {
+router.patch('/:productID', authCheck, (req, res, next) => {
     const id = req.params.productID;
     const updateOperations = {};
     for (const operations of req.body) {
@@ -156,7 +158,7 @@ router.patch('/:productID', (req, res, next) => {
         });
 });
 
-router.delete('/:productID', (req, res, next) => {
+router.delete('/:productID', authCheck, (req, res, next) => {
     const id = req.params.productID;
     //Delete a single product 
     Product.remove({ _id: id })
