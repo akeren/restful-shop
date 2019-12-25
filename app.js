@@ -32,6 +32,7 @@ mongoose.connect('mongodb://localhost/shop', {
  ** Logging incoming requests
  */
 app.use(morgan('dev'));
+app.use('/uploads', express.static('uploads'));
 /*
  ** Body-parser middleware
  */
