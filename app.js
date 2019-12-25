@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
  */
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
-
+const userRoutes = require('./api/routes/users');
 /*
  ** MongDB Atlas connection using 
  */
@@ -23,7 +23,8 @@ const orderRoutes = require('./api/routes/orders');
 // MongoDB Local Connection
 mongoose.connect('mongodb://localhost/shop', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 
 //mongoose.Promise = global.Promise;
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
  */
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-
+app.use('/users', userRoutes);
 /*
  ** Handling errors 
  */
@@ -74,6 +75,5 @@ app.use((error, req, res, next) => {
         }
     });
 });
-
 
 module.exports = { app }

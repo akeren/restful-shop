@@ -16,6 +16,7 @@
     "author": "Kater Akeren",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^3.0.7",
         "body-parser": "^1.19.0",
         "express": "^4.17.1",
         "mongoose": "^5.8.2",
