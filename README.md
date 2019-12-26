@@ -32,10 +32,10 @@
 > If you discover a security vulnerability, please send an email to [akerenkater@gmail.com]() or better still create a pull request. All security vulnerabilities will be promptly addressed and appreciated.
 
 ## Aknowledgement
->  I greatly acknowledge and appreciate the immense contribution of my mentor **Maximilian Schwarzmüller**.
+>  I greatly acknowledge and appreciate the immense contribution of my mentor **[Maximilian Schwarzmüller](https://twitter.com/maxedapps)**.
 
 ## Dedication 
-> I dedicated this work to [Maverick](https://twitter.com/supacode) and the entire community of **Node JS**
+> I dedicated this work to **[Maverick](https://twitter.com/supacode)** and the entire **Community of Node JS**
 
 ## License
 > Open-source Learning curve for beginers, intermediate, and senior developers. This project work is built and used with `GPL.3.0` licence. You are free to integrate the codes to your application to build optimal, sustainable and help many seasoned young and upcoming developers to write optimal codes and built real-world applications with **Node.JS & MongoDB**.
