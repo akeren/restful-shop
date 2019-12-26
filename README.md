@@ -1,7 +1,5 @@
 # A Node JS *RestFul Shop API* Service with MongoDB
 
-![Node.JS](https://www.peerbits.com/wp-content/uploads/2019/10/rest-api-code-main.png)
-
 > **Node JS** is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser - (Wikipedia) [Read more with an exmaple](https://nodejs.org/en/about/)
 
 ## Workdone
