@@ -1,3 +1,4 @@
+require('dotenv').config({ path: 'config.env' });
 require('./api/db/mongoose');
 const http = require('http');
 const { app } = require('./app');

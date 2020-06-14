@@ -10,7 +10,7 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
