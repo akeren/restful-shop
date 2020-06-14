@@ -10,9 +10,6 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
-// establish connection
-require('./api/db/mongoose');
-
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 
@@ -41,9 +38,7 @@ app.use((req, res, next) => {
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/users', userRoutes);
-/*
- ** Handling errors
- */
+
 app.use((req, res, next) => {
 	const error = new Error('oops! - Not Found');
 	error.status = 404;
